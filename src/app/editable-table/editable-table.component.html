@@ -1,0 +1,68 @@
+<div class="container">
+  <h2>Basic Table</h2>
+  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
+  <table class="table">
+    <thead>
+      <tr>
+       <!-- <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>-->
+        <th *ngFor = "let header of headers">
+          {{header}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor ="let row of tableContent">
+        <td>
+          <span  *ngIf= "!isEditMode || editRowObject.uniqueId !== row.uniqueId">{{row.firtsname}}</span>
+          <input *ngIf ="isEditMode && editRowObject.uniqueId === row.uniqueId" ng2focus [(ngModel)] ="row.firtsname" type="text"  [name]="row.firtsname"/>
+        </td>
+
+        <td>
+          <span *ngIf= "!isEditMode  || editRowObject.uniqueId !== row.uniqueId">{{row.lastname}}</span>
+          <input *ngIf ="isEditMode &&  editRowObject.uniqueId === row.uniqueId"  ng2focus [(ngModel)] ="row.lastname" type="text"  [name]="row.lastname"/>
+        </td>
+        <td>
+          <span *ngIf= "!isEditMode || editRowObject.uniqueId !== row.uniqueId">{{row.email}}</span>
+          <input *ngIf ="isEditMode &&  editRowObject.uniqueId === row.uniqueId" ng2focus [(ngModel)] ="row.email" type="text"  [name]="row.email"/>
+        
+        </td>
+        <td class={{buttonsTdClass}}>
+            <button class={{editButtonClass}} *ngIf = "!isEditMode || editRowObject.uniqueId !== row.uniqueId"
+            (click)="editRow(row)">
+              <i class="{{editIcon}}"></i>Edit
+            </button>
+            <button class={{editButtonClass}} *ngIf ="isEditMode &&  editRowObject.uniqueId === row.uniqueId"  
+              (click)="saveRow(row)">
+              <i class="{{saveIcon}}"></i>Save
+            </button>
+            <button class={{deleteButtonClass}} *ngIf = "!isEditMode || editRowObject.uniqueId !== row.uniqueId"
+            (click)="deleteRow(row)">
+              <i class="{{deleteIcon}}"></i>Delete
+            </button>
+            <button class={{deleteButtonClass}}   *ngIf ="isEditMode &&  editRowObject.uniqueId === row.uniqueId" 
+            
+             (click)="cancelRow(row)">
+              <i class="{{deleteIcon}}"></i>Cancel
+            </button>
+          </td>
+
+      </tr>
+    <!--  <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>-->
+    </tbody>
+  </table>
+  <pre>{{tableContent | json}}</pre>
+  <pre>{{editingRowsCache | json}}</pre>
+  <pre>{{isEditMode}}</pre>
+  <pre>{{editRowObject  | json}}</pre>
+</div>
