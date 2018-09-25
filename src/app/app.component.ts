@@ -13,7 +13,59 @@ export class AppComponent implements OnInit{
     "lastname",
     "email"
   ]
-  content:Array<Object> =[];
+  content:Array<Object> =[
+    {
+    
+     "firtsname":"john",
+     "lastname":"Doe",
+     "email":"john@example.com"
+    },
+    {
+    
+     "firtsname":"Mary",
+     "lastname":"Moe",
+     "email":"mary@example.com"
+    },{
+     
+     "firtsname":"July",
+     "lastname":"Dooley",
+     "email":"july@example.com"
+    },
+    {
+    
+     "firtsname":"john",
+     "lastname":"Doe",
+     "email":"john@example.com"
+    },
+    {
+    
+     "firtsname":"Mary",
+     "lastname":"Moe",
+     "email":"mary@example.com"
+    },{
+     
+     "firtsname":"July",
+     "lastname":"Dooley",
+     "email":"july@example.com"
+    },
+    {
+     
+     "firtsname":"john",
+     "lastname":"Doe",
+     "email":"john@example.com"
+    },
+    {
+   
+     "firtsname":"Mary",
+     "lastname":"Moe",
+     "email":"mary@example.com"
+    },{
+  
+     "firtsname":"July",
+     "lastname":"Dooley",
+     "email":"july@example.com"
+    }
+];
   constructor(private environmentService: EnvironmentsService){
 
   }

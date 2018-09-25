@@ -13,37 +13,37 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor ="let row of tableContent">
+      <tr *ngFor ="let row of tableContent ;let idx = index">
         <td>
-          <span  *ngIf= "!isEditMode || editRowObject.uniqueId !== row.uniqueId">{{row.firtsname}}</span>
-          <input *ngIf ="isEditMode && editRowObject.uniqueId === row.uniqueId" ng2focus [(ngModel)] ="row.firtsname" type="text"  [name]="row.firtsname"/>
+          <span  *ngIf= "!isEditMode || currentIndex != idx ">{{row.firtsname}}</span>
+          <input *ngIf ="isEditMode && currentIndex == idx" ng2focus [(ngModel)] ="row.firtsname" type="text"  [name]="row.firtsname"/>
         </td>
 
         <td>
-          <span *ngIf= "!isEditMode  || editRowObject.uniqueId !== row.uniqueId">{{row.lastname}}</span>
-          <input *ngIf ="isEditMode &&  editRowObject.uniqueId === row.uniqueId"  ng2focus [(ngModel)] ="row.lastname" type="text"  [name]="row.lastname"/>
+          <span *ngIf= "!isEditMode || currentIndex != idx">{{row.lastname}}</span>
+          <input *ngIf ="isEditMode &&  currentIndex == idx"  ng2focus [(ngModel)] ="row.lastname" type="text"  [name]="row.lastname"/>
         </td>
         <td>
-          <span *ngIf= "!isEditMode || editRowObject.uniqueId !== row.uniqueId">{{row.email}}</span>
-          <input *ngIf ="isEditMode &&  editRowObject.uniqueId === row.uniqueId" ng2focus [(ngModel)] ="row.email" type="text"  [name]="row.email"/>
+          <span *ngIf= "!isEditMode || currentIndex != idx">{{row.email}}</span>
+          <input *ngIf ="isEditMode &&  currentIndex == idx" ng2focus [(ngModel)] ="row.email" type="text"  [name]="row.email"/>
         
         </td>
         <td class={{buttonsTdClass}}>
-            <button class={{editButtonClass}} *ngIf = "!isEditMode || editRowObject.uniqueId !== row.uniqueId"
-            (click)="editRow(row)">
+            <button class={{editButtonClass}} *ngIf = "!isEditMode || currentIndex != idx"
+            (click)="editRow(row,idx)">
               <i class="{{editIcon}}"></i>Edit
             </button>
-            <button class={{editButtonClass}} *ngIf ="isEditMode &&  editRowObject.uniqueId === row.uniqueId"  
-              (click)="saveRow(row)">
+            <button class={{editButtonClass}} *ngIf ="isEditMode &&  currentIndex == idx"  
+              (click)="saveRow(row,idx)">
               <i class="{{saveIcon}}"></i>Save
             </button>
-            <button class={{deleteButtonClass}} *ngIf = "!isEditMode || editRowObject.uniqueId !== row.uniqueId"
-            (click)="deleteRow(row)">
+            <button class={{deleteButtonClass}} *ngIf = "!isEditMode || currentIndex != idx"
+            (click)="deleteRow(row,idx)">
               <i class="{{deleteIcon}}"></i>Delete
             </button>
-            <button class={{deleteButtonClass}}   *ngIf ="isEditMode &&  editRowObject.uniqueId === row.uniqueId" 
+            <button class={{deleteButtonClass}}   *ngIf ="isEditMode &&  currentIndex == idx" 
             
-             (click)="cancelRow(row)">
+             (click)="cancelRow(row,idx)">
               <i class="{{deleteIcon}}"></i>Cancel
             </button>
           </td>
@@ -65,4 +65,5 @@
   <pre>{{editingRowsCache | json}}</pre>
   <pre>{{isEditMode}}</pre>
   <pre>{{editRowObject  | json}}</pre>
+  <pre>currentIndex</pre>
 </div>
